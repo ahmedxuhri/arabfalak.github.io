@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /scripts/
+Disallow: /data/
+Disallow: /.env
+
+Sitemap: https://www.arabfalak.com/sitemap.xml
