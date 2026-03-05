@@ -11,7 +11,7 @@ import subprocess
 
 # Load environment variables
 from dotenv import load_dotenv
-load_dotenv()
+load_dotenv(override=True)
 
 DEEPSEEK_API_KEY = os.getenv('DEEPSEEK_API_KEY')
 DEEPSEEK_BASE_URL = 'https://api.deepseek.com/v1'
