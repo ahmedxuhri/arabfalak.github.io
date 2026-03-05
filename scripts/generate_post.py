@@ -327,8 +327,9 @@ def build_html_file(post_data, related_posts):
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap">
-  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap"></noscript>
+  <link rel="stylesheet" href="/assets/css/style.min.css">
   
   <!-- JSON-LD -->
   <script type="application/ld+json">
@@ -438,7 +439,7 @@ def build_html_file(post_data, related_posts):
   {footer}
   
   {'<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.contentLoaded();</script>' if mermaid_html else ''}
-  <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/main.min.js" defer></script>
 </body>
 </html>'''
     
