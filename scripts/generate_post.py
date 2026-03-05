@@ -354,7 +354,7 @@ def build_html_file(post_data, related_posts):
       }},
       {{
         "@type": "FAQPage",
-        "mainEntity": {json.dumps(faq_schema, ensure_ascii=False)}
+        "mainEntity": {json.dumps(faq_schema, ensure_ascii=False)[:1500]}
       }},
       {{
         "@type": "BreadcrumbList",
