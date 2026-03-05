@@ -305,13 +305,13 @@ def build_html_file(post_data, related_posts):
   <title>{title} | عرب فلك</title>
   <meta name="description" content="{meta_description}">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://www.arabfalak.com/posts/{slug}/">
+  <link rel="canonical" href="https://www.arabfalak.com/{slug}/">
   
   <!-- Open Graph -->
   <meta property="og:title" content="{title}">
   <meta property="og:description" content="{post_data.get('og_description', meta_description)}">
   <meta property="og:image" content="https://www.arabfalak.com/assets/og-default.jpg">
-  <meta property="og:url" content="https://www.arabfalak.com/posts/{slug}/">
+  <meta property="og:url" content="https://www.arabfalak.com/{slug}/">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="ar_AR">
   <meta property="og:site_name" content="عرب فلك">
@@ -340,7 +340,7 @@ def build_html_file(post_data, related_posts):
         "description": "{meta_description}",
         "keywords": "{schema_keywords}",
         "inLanguage": "ar",
-        "url": "https://www.arabfalak.com/posts/{slug}/",
+        "url": "https://www.arabfalak.com/{slug}/",
         "datePublished": "{today}",
         "dateModified": "{today}",
         "author": {{"@type": "Organization", "name": "عرب فلك"}},
@@ -359,7 +359,7 @@ def build_html_file(post_data, related_posts):
         "itemListElement": [
           {{"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://www.arabfalak.com/"}},
           {{"@type": "ListItem", "position": 2, "name": "{category}", "item": "https://www.arabfalak.com/categories/{category_slug}/"}},
-          {{"@type": "ListItem", "position": 3, "name": "{title}", "item": "https://www.arabfalak.com/posts/{slug}/"}}
+          {{"@type": "ListItem", "position": 3, "name": "{title}", "item": "https://www.arabfalak.com/{slug}/"}}
         ]
       }}
     ]
@@ -567,8 +567,21 @@ def main():
     # Build HTML
     html_content, slug = build_html_file(post_data, related_posts)
     
-    # Write HTML file
-    post_dir = Path('/root/arabfalak/posts') / slug
+    # Check for slug conflict
+    conflict_check = subprocess.run(
+        ['/usr/bin/python3', '/root/arabfalak/scripts/check_slug_conflict.py', slug],
+        capture_output=True,
+        text=True
+    )
+    
+    if conflict_check.returncode != 0:
+        print(f"❌ {conflict_check.stdout.strip()}")
+        return
+    
+    print(conflict_check.stdout.strip())
+    
+    # Write HTML file at root level (not in /posts/ subdirectory)
+    post_dir = Path('/root/arabfalak') / slug
     post_dir.mkdir(parents=True, exist_ok=True)
     html_file = post_dir / 'index.html'
     html_file.write_text(html_content, encoding='utf-8')
@@ -587,7 +600,7 @@ def main():
     new_entry = {
         'title': post_data.get('title'),
         'slug': slug,
-        'url': f'/posts/{slug}/',
+        'url': f'/{slug}/',
         'category': post_data.get('category'),
         'tags': post_data.get('tags', []),
         'focus_keyphrase': post_data.get('focus_keyphrase'),
@@ -611,7 +624,7 @@ def main():
     
     print(f"\n✨ تم إنشاء المقال بنجاح!")
     print(f"📄 الملف: {html_file}")
-    print(f"🔗 الرابط: https://www.arabfalak.com/posts/{slug}/")
+    print(f"🔗 الرابط: https://www.arabfalak.com/{slug}/")
 
 
 if __name__ == '__main__':

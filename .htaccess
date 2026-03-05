@@ -1,0 +1,14 @@
+# Redirect old post URLs from /posts/{slug}/ to /{slug}/
+# This is only needed if you have old links pointing to /posts/
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  
+  # Check if it's not a real directory or file
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  
+  # Redirect /posts/{slug}/ to /{slug}/
+  RewriteRule ^posts/([a-z0-9-]+)/?$ /$1/ [R=301,L]
+</IfModule>
