@@ -9,9 +9,10 @@ from pathlib import Path
 from urllib.parse import urljoin
 import subprocess
 
-# Load environment variables
+# Load environment variables from the arabfalak directory
 from dotenv import load_dotenv
-load_dotenv(override=True)
+env_file = Path(__file__).parent.parent / '.env'
+load_dotenv(env_file, override=True)
 
 DEEPSEEK_API_KEY = os.getenv('DEEPSEEK_API_KEY')
 DEEPSEEK_BASE_URL = 'https://api.deepseek.com/v1'
@@ -76,7 +77,7 @@ def call_deepseek_api(system_prompt, user_prompt):
             {'role': 'user', 'content': user_prompt}
         ],
         'temperature': 0.7,
-        'max_tokens': 20000
+        'max_tokens': 8192
     }
     
     try:
