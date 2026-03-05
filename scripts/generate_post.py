@@ -469,6 +469,7 @@ def build_table_html(table):
 def main():
     parser = argparse.ArgumentParser(description='Generate astronomy blog post')
     parser.add_argument('--topic', type=str, help='Topic for the post')
+    parser.add_argument('--category', type=str, help='Category for the post')
     args = parser.parse_args()
     
     topic = args.topic or TOPICS_LIST[0]
@@ -559,6 +560,10 @@ def main():
     # Parse response
     print("📖 جاري تحليل الرد...")
     post_data = extract_json_from_response(response)
+    
+    # Override category if provided via CLI
+    if args.category:
+        post_data['category'] = args.category
     
     # Get related posts
     from tfidf_linker import get_related_posts
