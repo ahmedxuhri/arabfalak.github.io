@@ -101,8 +101,9 @@
     </p>
     <p class="footer-copy">&copy; <span id="year"></span> عرب فلك. جميع الحقوق محفوظة.</p>
   </div>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>document.addEventListener('DOMContentLoaded', function() { document.getElementById('year').textContent = new Date().getFullYear(); });</script>
 </footer>
   <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/blog.js" defer></script>
 </body>
 </html>
