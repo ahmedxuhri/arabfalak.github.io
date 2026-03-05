@@ -3,6 +3,13 @@ set -e
 
 cd /root/arabfalak || exit 1
 
+# Fetch latest data from GitHub repo
+echo "🔄 Fetching latest posts queue from GitHub..."
+git fetch origin main
+git checkout origin/main -- data/future-posts.json 2>/dev/null || {
+    echo "⚠️  Could not fetch future-posts.json from GitHub, using local version"
+}
+
 # Get next post from the queue
 NEXT_POST=$(/usr/bin/python3 /root/arabfalak/scripts/get_next_post.py)
 
