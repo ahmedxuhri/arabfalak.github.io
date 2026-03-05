@@ -76,7 +76,7 @@ def call_deepseek_api(system_prompt, user_prompt):
             {'role': 'user', 'content': user_prompt}
         ],
         'temperature': 0.7,
-        'max_tokens': 8000
+        'max_tokens': 20000
     }
     
     try:
