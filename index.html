@@ -7,6 +7,7 @@
   <meta name="description" content="موقع عرب فلك — مقالات علمية متخصصة في علم الفلك باللغة العربية. استكشف النجوم والمجرات والثقوب السوداء وأسرار الكون.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.arabfalak.com/">
+  <link rel="icon" href="/assets/favicon.jpg" type="image/jpeg">
   
   <!-- Open Graph -->
   <meta property="og:title" content="عرب فلك — علم الفلك بالعربية">
@@ -62,15 +63,8 @@
         مرحباً بك في أكبر موقع عربي متخصص في علم الفلك. استكشف النجوم والمجرات والثقوب السوداء وأسرار الكون.
       </p>
       
-      <section class="posts-grid">
-            <article class="post-card">
-      <span class="post-category">النجوم</span>
-      <h3><a href="/posts/life-cycle-of-stars/" style="text-decoration: none; color: inherit;">دورة حياة النجوم: من السديم إلى الثقب الأسود</a></h3>
-      <time>3 مارس 2026</time>
-      <p class="excerpt">تعرف على رحلة النجوم المذهلة من ولادتها في السدم الضخمة إلى نهاياتها المختلفة. استكشف مراحل تطورها وكيف تحول الكون من خلال دورات حياتها الطويلة والمعق...</p>
-      <a href="/posts/life-cycle-of-stars/" class="read-more">اقرأ المزيد →</a>
-    </article>
-
+      <section class="posts-grid" id="posts-container">
+        <!-- Posts will be loaded dynamically via JavaScript -->
       </section>
       
       
@@ -90,5 +84,6 @@
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </footer>
   <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/blog.js" defer></script>
 </body>
 </html>
