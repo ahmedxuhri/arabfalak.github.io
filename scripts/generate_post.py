@@ -438,7 +438,7 @@ def build_html_file(post_data, related_posts):
   
   {footer}
   
-  {'<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.contentLoaded();</script>' if mermaid_html else ''}
+  {'<script async src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js" onload="mermaid.contentLoaded();"></script>' if mermaid_html else ''}
   <script src="/assets/js/main.min.js" defer></script>
 </body>
 </html>'''
